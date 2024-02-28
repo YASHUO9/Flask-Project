@@ -1,4 +1,5 @@
-from flask import Flask,request,render_template
+from flask import Flask,request,render_template,jsonify
+import json
 
 
 app = Flask(__name__)
@@ -13,7 +14,7 @@ def home():
     return "This is the home page"
 
 
-@app.route('/calculator',methods=['GET','POST'])
+@app.route('/calculator',methods=['GET'])
 def calculator():
     num1 = request.json['num1']
     num2 = request.json['num2']
@@ -34,7 +35,7 @@ def calculator():
     else:
         result = "Invalid Operation"
         
-    return result
+    return "the operation {} and the result is {}".format(operation,result)
 
 
 
